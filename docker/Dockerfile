@@ -9,8 +9,7 @@ RUN apt update && apt install -y libc6:i386 libstdc++6:i386
 # install packages
 RUN apt install -y xinetd
 
-# copy service/flag files
-COPY service.conf /service.conf
+# copy flag files
 COPY flag /flag
 COPY target /target
 
@@ -18,4 +17,4 @@ COPY target /target
 RUN chmod a-w flag
 
 # run xinetd
-CMD ["/usr/sbin/xinetd", "-dontfork", "-f", "/service.conf"]
+CMD ["/target"]
