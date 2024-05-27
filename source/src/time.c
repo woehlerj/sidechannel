@@ -63,7 +63,6 @@ int main(int argc, char *argv[])
     client_len = sizeof(client_address);
     client_sockfd = accept(server_sockfd,\
                       (struct sockaddr *)&client_address, &client_len);
-    printf("Current file descriptor: %d\n", client_sockfd);
 
     /* Fork to create a process for this client and perform a test to see
        whether we're the parent or the child. */
