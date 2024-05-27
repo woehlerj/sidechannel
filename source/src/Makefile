@@ -18,7 +18,7 @@ all: $(ALL)
 
 target: time.c
 	$(CC) $(CFLAGS) -o $@ $<
-	checksec --file $@
+	checksec --file=$@
 
 clean:
 	rm -f $(ALL)
