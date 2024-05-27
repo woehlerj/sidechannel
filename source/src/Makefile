@@ -16,7 +16,7 @@ ALL := target
 
 all: $(ALL)
 
-target: fmtstr.c
+target: time.c
 	$(CC) $(CFLAGS) -o $@ $<
 	checksec --file $@
 
