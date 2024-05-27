@@ -7,17 +7,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 // Override __stack_chk_fail to suppress stack smashing messages
 void __stack_chk_fail(void) {
-    // Do nothing or handle the error as you wish
-    printf("Thank you for submitting feedback\n");
+    write(4, "Thank you for submitting feedback\n", 34);
     exit(EXIT_FAILURE);
 }
 
 void start(int fd) {
   write(fd, "Welcome to Cafe Grazie\n", 23);
-  write(fd, "Please enter your feedback:\n", 27);
+  write(fd, "Please enter your feedback:\n", 28);
 
   char buf[32];
   memset(buf, 0, sizeof(buf));
