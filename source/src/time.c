@@ -4,6 +4,12 @@
 #include <string.h>
 #include <err.h>
 
+// Override __stack_chk_fail to suppress stack smashing messages
+void __stack_chk_fail(void) {
+    // Do nothing or handle the error as you wish
+    exit(EXIT_FAILURE);
+}
+
 void start() {
   printf("Welcome to Cafe Grazie\n");
   printf("Please enter your feedback:\n");
