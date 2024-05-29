@@ -12,6 +12,7 @@ RUN apt install -y xinetd
 # copy flag files
 COPY flag /flag
 COPY target /target
+COPY welcome-message.txt /welcome-message.txt
 
 # make the flag readonly
 RUN chmod a-w flag

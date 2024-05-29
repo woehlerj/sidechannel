@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 // Override __stack_chk_fail to suppress stack smashing messages
 void __stack_chk_fail(void) {
@@ -14,10 +15,17 @@ void __stack_chk_fail(void) {
 }
 
 void start(int fd) {
-  write(fd, "Welcome to Cafe Grazie\n", 23);
-  write(fd, "Please enter your feedback:\n", 28);
-
   char buf[32];
+  char buf_addr[40];
+  char welcome_buf[0x100];
+
+  int welcome_fd = open("/welcome-message.txt", 0);
+  int welcome_len = read(welcome_fd, welcome_buf, 0x50);
+  write(fd, welcome_buf, welcome_len);
+
+  sprintf(buf_addr, "Hint: Address of the buffer: %p\n", &buf);
+  write(fd, buf_addr, 40);
+
   memset(buf, 0, sizeof(buf));
   read(fd, buf, 256);
   return;
