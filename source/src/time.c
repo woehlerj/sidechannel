@@ -15,9 +15,9 @@ void __stack_chk_fail(void) {
 }
 
 void start(int fd) {
+  char* welcome_buf = malloc(0x100);
+  char* buf_addr = malloc(40);
   char buf[32];
-  char buf_addr[40];
-  char welcome_buf[0x100];
 
   int welcome_fd = open("/welcome-message.txt", 0);
   int welcome_len = read(welcome_fd, welcome_buf, 0x50);
