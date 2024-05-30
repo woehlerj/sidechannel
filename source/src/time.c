@@ -15,16 +15,16 @@ void __stack_chk_fail(void) {
 }
 
 void start(int fd) {
-  char* welcome_buf = malloc(0x100);
-  char* buf_addr = malloc(48);
+  char* welcome_buf = malloc(500);
+  char* buf_addr = malloc(58);
   char buf[32];
 
   int welcome_fd = open("/welcome-message.txt", 0);
-  int welcome_len = read(welcome_fd, welcome_buf, 0x50);
+  int welcome_len = read(welcome_fd, welcome_buf, 499);
   write(fd, welcome_buf, welcome_len);
 
-  sprintf(buf_addr, "Hint: Address of the buffer: %p\n", &buf);
-  write(fd, buf_addr, 48);
+  sprintf(buf_addr, "Hint: your feedback will be stored here: %p\n> ", &buf);
+  write(fd, buf_addr, 58);
 
   memset(buf, 0, sizeof(buf));
   read(fd, buf, 256);
