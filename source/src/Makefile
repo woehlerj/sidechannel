@@ -5,7 +5,7 @@ CFLAGS += -Wno-format-security
 
 # enable executable stack
 # CFLAGS += -z execstack
-
+CFLAGS += -z noexecstack
 # enable SSP
 CFLAGS += -fstack-protector
 
