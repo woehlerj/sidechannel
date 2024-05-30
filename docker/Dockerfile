@@ -3,8 +3,9 @@ FROM ubuntu:22.04
 RUN adduser --disabled-password --gecos '' ctf
 
 # enable 32-bit support
-RUN dpkg --add-architecture i386
-RUN apt update && apt install -y libc6:i386 libstdc++6:i386
+#RUN dpkg --add-architecture i386
+#RUN apt update && apt install -y libc6:i386 libstdc++6:i386
+RUN apt update && apt install -y libc6 libstdc++6
 
 # install packages
 RUN apt install -y xinetd

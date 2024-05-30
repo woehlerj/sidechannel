@@ -1,4 +1,4 @@
-CFLAGS = -std=gnu99 -O0 -g -m32
+CFLAGS = -std=gnu99 -O0 -g #-m32
 
 # supress warning
 CFLAGS += -Wno-format-security

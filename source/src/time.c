@@ -16,7 +16,7 @@ void __stack_chk_fail(void) {
 
 void start(int fd) {
   char* welcome_buf = malloc(0x100);
-  char* buf_addr = malloc(40);
+  char* buf_addr = malloc(48);
   char buf[32];
 
   int welcome_fd = open("/welcome-message.txt", 0);
@@ -24,7 +24,7 @@ void start(int fd) {
   write(fd, welcome_buf, welcome_len);
 
   sprintf(buf_addr, "Hint: Address of the buffer: %p\n", &buf);
-  write(fd, buf_addr, 40);
+  write(fd, buf_addr, 48);
 
   memset(buf, 0, sizeof(buf));
   read(fd, buf, 256);
