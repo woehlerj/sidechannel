@@ -1,16 +1,9 @@
-.section .text
 .global FUN1
 FUN1:
-    pop %rdi
+    SYSCALL
     ret
 
 .global FUN2
 FUN2:
-    pop %rdx
+    POP %RAX
     ret
-
-.global FUN3
-FUN3:
-    pop %rsi
-    ret
-
