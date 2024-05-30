@@ -1,6 +1,6 @@
 CFLAGS = -std=gnu99 -O0 -g #-m32
 
-# supress warning
+# suppress warning
 CFLAGS += -Wno-format-security
 
 # enable executable stack
@@ -16,11 +16,18 @@ ALL := target
 
 all: $(ALL)
 
-target: time.c
-	$(CC) $(CFLAGS) -o $@ $<
+target: time.o gadget.o
+	$(CC) $(CFLAGS) -o $@ $^
 	checksec --file=$@
 
+time.o: time.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+gadget.o: gadget.S
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 clean:
-	rm -f $(ALL)
+	rm -f $(ALL) *.o
 
 .PHONY: all clean
+
