@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
        whether we're the parent or the child. */
 
     if (fork() == 0) {
-      alarm(10);
+      alarm(1000);
       /* If we're the child, we can now read/write to the client on
          client_sockfd.
          The five second delay is just for this demonstration. */
