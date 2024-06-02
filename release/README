@@ -1,6 +1,4 @@
-Ops, I didn't realize that there is security implication of using a
-benign-looking function, printf()! Please hijack its control flow to
-print_key().
+Our most favorite local coffee shop has created a form for feedback. This feedback needs to be written somewhere - but they might have been a bit a bit mean with the storage space for it. What happens if we exceed it? Does it really behave exactly the same?
 
 * Refs
- - https://crypto.stanford.edu/cs155/papers/formatstring-1.2.pdf
+ - https://en.wikipedia.org/wiki/Timing_attack 

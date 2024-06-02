@@ -1,3 +1,5 @@
+// This file is based on the server file from diehard from lab07
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
@@ -14,25 +16,33 @@ void __stack_chk_fail(void) {
     exit(EXIT_FAILURE);
 }
 
+// function to fork
 void start(int fd) {
+  // Allocate buffers for welcome message and buffer address on the heap
+  // so it's no need to overwrite them.
   char* welcome_buf = malloc(500);
   char* buf_addr = malloc(58);
   char buf[32];
 
+  // Print welcome message
   int welcome_fd = open("/welcome-message.txt", 0);
   int welcome_len = read(welcome_fd, welcome_buf, 499);
   write(fd, welcome_buf, welcome_len);
 
+  // print buffer address to make it doable
   sprintf(buf_addr, "Hint: your feedback will be stored here: %p\n> ", &buf);
   write(fd, buf_addr, 58);
 
+  // read in buffer
   memset(buf, 0, sizeof(buf));
   read(fd, buf, 256);
+
   return;
 }
 
 int main(int argc, char *argv[])
 {
+  // general server setup
   int port = 28014;
   int server_sockfd, client_sockfd;
   socklen_t server_len, client_len;
@@ -81,6 +91,9 @@ int main(int argc, char *argv[])
          client_sockfd.
          The five second delay is just for this demonstration. */
 
+      // Run start function. In case of no buffer overflow, wait for 0.5 s and then send the message.
+      // In case of buffer overflow, this thread will not end, but the stk_check_fail
+      // handler will be executed, so the same message will be sent but without delay.
       start(client_sockfd);
       usleep(500000);
       write(client_sockfd, "Thank you for submitting feedback\n", 34);

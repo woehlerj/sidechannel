@@ -1,10 +1,17 @@
-* Bug: a fmtstr vulnerability
+* Bug: a buffer overflow, with a timing sidechannel to smartly leak the canary
 
-  char msg[100];
-  snprintf(msg, sizeof(msg), "Invalid Password! %s\n", buf);
-  printf(msg);
+canary successful:
+  usleep(500000);
+  write(client_sockfd, "Thank you for submitting feedback\n", 34); 
+
+canary failed:
+  void __stack_chk_fail(void) {
+      write(4, "Thank you for submitting feedback\n", 34);
+      exit(EXIT_FAILURE);
+  }
+
 
 * Exploit
 
-  1) overwrite 'secret' with any value
-  2) overwrite the GOT of puts() to print_key()
+  1) leak canary by smartly bruteforcing it using the timing sidechannel
+  2) read out flag by using ROP gadgets and read / open / write

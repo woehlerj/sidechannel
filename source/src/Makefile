@@ -3,9 +3,9 @@ CFLAGS = -std=gnu99 -O0 -g #-m32
 # suppress warning
 CFLAGS += -Wno-format-security
 
-# enable executable stack
-# CFLAGS += -z execstack
+# disable executable stack
 CFLAGS += -z noexecstack
+
 # enable SSP
 CFLAGS += -fstack-protector
 
