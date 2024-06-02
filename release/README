@@ -4,3 +4,10 @@ Hint: The flag is stored in /flag
 
 * Refs
  - https://en.wikipedia.org/wiki/Side-channel_attack
+
+[*] './target'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
