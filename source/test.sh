@@ -21,4 +21,4 @@ done
 trap "docker container stop $ID &>/dev/null" EXIT
 
 sleep 2
-PORT=$PORT REMOTE=1 source/exploit.py
+PORT=$PORT /usr/bin/python3 source/exploit.py
