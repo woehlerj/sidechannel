@@ -11,7 +11,7 @@ PORT=$(cat PORT)
 PORT=$(($PORT + 1))
 
 echo "[!] launching a docker container"
-docker run -p $PORT:9999 --name $ID --rm -t $NAME &
+docker run -p $PORT:28014 --name $ID --rm -t $NAME &
 
 while ! nc -z -w5 localhost $PORT; do
     echo  "[!] waiting .."
