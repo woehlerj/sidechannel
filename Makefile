@@ -20,7 +20,7 @@ run:
 	docker run -p $(PORT):28014 --rm -i -t $(NAME)
 
 submit:
-	zip -r ../$(NAME).zip .
+	zip -r ../$(NAME).zip . -x ./.git\*
 	@echo "Please submit ../$(NAME).zip"
 
 exploit:
