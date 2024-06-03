@@ -2,10 +2,12 @@ Our most favorite local coffee shop has created a form for feedback. This feedba
 
 Hint: The flag is stored in /flag
 
+Hint 2: Is there a difference in behaviour between a "legal" input and a long input?
+
 * Refs
  - https://en.wikipedia.org/wiki/Side-channel_attack
 
-[*] './target'
+[*] checksec './target'
     Arch:     amd64-64-little
     RELRO:    Partial RELRO
     Stack:    Canary found
